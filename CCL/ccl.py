@@ -1,7 +1,17 @@
+# python CCL/ccl.py
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
-img = cv2.imread('./ADASVehicleTracking/Data/DSC_1643.jpg', 0)
+# fname = r"D:\work\ADASVehicleTracking\visualizations\GMM_image.png" # out of GMM
+fname = r"D:\work\ADASVehicleTracking\visualizations\GMM_cluster_2.png" # out of GMM
+# fname = 'D:\work\ADASVehicleTracking\Data\DSC_1643.jpg' # original
+def props(img,show_uniques=False):
+    print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min(),"Data Type :",img.dtype)
+    if show_uniques:
+        print("Uniques :",np.unique(img))
+img = cv2.imread(fname, 0)
+props(img)
 img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)[1]  # ensure binary
 num_labels, labels_im = cv2.connectedComponents(img)
 
@@ -18,6 +28,7 @@ def imshow_components(labels):
     labeled_img[label_hue==0] = 0
 
     plt.imshow(labeled_img)
+    plt.show()
 #     cv2.waitKey()
 
 imshow_components(labels_im)
