@@ -1,12 +1,25 @@
 import cv2
 import numpy as np
+from utils import readImage, props
 
-def props(img,show_uniques=False):
-    print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min(),"Data Type :",img.dtype)
-    if show_uniques:
-        print("Uniques :",np.unique(img))
+# https://pyimagesearch.com/2021/02/22/opencv-connected-component-labeling-and-analysis/
 
-def run_CCL_clustering(image_path = None, img_data = None, convert_BGR2RGB = True,):
+def run_CCL_clustering(image_path = None, img_data = None, convert_BGR2RGB = True, connectivity = 4):
+    if image_path is not None:
+        img_data = readImage(image_path=image_path, grayscale=True, convert_BGR2RGB = convert_BGR2RGB)
+    if img_data.max() <= 1:
+        img_data = np.uint8(img_data * 255)
+    # props(img_data)
+    
+    thresh_val, thresh_img = cv2.threshold(img_data, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    
+    # props(thresh_img)
+    
+    (numLabels, labels, stats, centroids) = cv2.connectedComponentsWithStats(thresh_img, connectivity, cv2.CV_32S)
+    
+    return labels
+
+def run_CCL_clustering_old(image_path = None, img_data = None, convert_BGR2RGB = True,):
     props(img_data)
     if image_path is not None:
         img_data = cv2.imread(image_path, 0)
