@@ -8,9 +8,9 @@ def props(img,show_uniques=False):
     if show_uniques:
         print("Uniques :",np.unique(img))
 
-def show_image(img,title=None, convert_BGR2RGB=True):
+def show_image(img,title=None, convert_BGR2RGB=True, figure_size = (20,15)):
     img = np.squeeze(img)
-    plt.figure(figsize=(20,15))
+    plt.figure(figsize=figure_size)
     plt.axis('off')
     plt.imshow(img)
     if title:
@@ -76,6 +76,6 @@ def save_image_cmap(image, title = None, cmap = "viridis"):
     
     if image.max() == 1:
         image = np.squeeze( image * 255)
-    
-    cv2.imwrite(f'visualizations/{title}.png', image.astype(np.uint8))
+    image = image.astype(np.uint8)
+    cv2.imwrite(f'visualizations/{title}.png',image )
     return image
