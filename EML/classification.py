@@ -35,7 +35,7 @@ def run_EML_classification(X_image, y_labels):
     # build model and train
     model = elm.elm(hidden_units=32, activation_function='relu',
                     random_type='normal', x=x_train, y=y_train, C=0.1, elm_type='clf')
-    beta, train_accuracy, running_time = model.fit('solution2')
+    beta, train_accuracy, running_time = model.fit('solution_automated_vehicle_system')
     print("classifier beta:\n", beta)
     print("classifier train accuracy:", train_accuracy)
     print('classifier running time:', running_time)
