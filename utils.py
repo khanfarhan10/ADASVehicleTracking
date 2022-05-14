@@ -32,7 +32,7 @@ def get_cluster_images_separated(image, default_background_fill_value = 0, save 
     # if default_background_fill_value == "plus_one":
     #     background_fill_value = max(uniques) + 1
     cluster_images = []
-    for unique in uniques:
+    for unique in uniques: # [0, 1, 2]
         current_image = np.where(image == unique, 1, default_background_fill_value)
         cluster_images.append(current_image)
         if save:
