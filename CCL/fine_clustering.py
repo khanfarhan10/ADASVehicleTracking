@@ -34,11 +34,13 @@ def run_CCL_clustering(image_path = None, img_data = None, convert_BGR2RGB = Tru
 def run_CCL_clustering_old(image_path = None, img_data = None, convert_BGR2RGB = True,):
     # props(img_data)
     if image_path is not None:
-        img_data = cv2.imread(image_path, 0)
-    if convert_BGR2RGB:
-        img_data = cv2.cvtColor(img_data, cv2.COLOR_BGR2RGB)
-    img_data = img_data.astype(np.uint8) * 255
-    img_data = cv2.cvtColor(img_data, cv2.COLOR_RGB2GRAY)
+        img_data = readImage(image_path=image_path,
+                             grayscale=True, convert_BGR2RGB = convert_BGR2RGB)
+    if img_data.max() <= 1:
+        img_data = np.uint8(img_data * 255)
+    # props(img_data)
+    
+    # img_data = cv2.cvtColor(img_data, cv2.COLOR_RGB2GRAY)
     img = cv2.threshold(img_data, 127, 255, cv2.THRESH_BINARY)[1]  # ensure binary
     num_labels, labels_im = cv2.connectedComponents(img)
     # return num_labels, labels_im
