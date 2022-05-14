@@ -3,6 +3,7 @@
 from sklearn.mixture import GaussianMixture
 import numpy as np
 import cv2
+from utils import readImage
 
 
 def run_GMM_clustering(image_path = None, img_data = None, convert_BGR2RGB = True,  k = 3, covariance_type="tied"):  
@@ -19,13 +20,10 @@ def run_GMM_clustering(image_path = None, img_data = None, convert_BGR2RGB = Tru
     Returns:
         np.array: Clustered GMM Image
     """
+    if image_path:
+        img_data = readImage(image_path=image_path, convert_BGR2RGB=convert_BGR2RGB)
     if k == "elbow_method":
         k = 4 # TODO - Implement the elbow method
-    if image_path is not None:
-        img_data = cv2.imread(image_path)
-    if convert_BGR2RGB:
-        img_data = cv2.cvtColor(img_data, cv2.COLOR_BGR2RGB)
-    # image = cv2.resize(image, (0, 0), fx = 0.5, fy = 0.5)
 
     reshaped_img_data = img_data.reshape(img_data.shape[0]*img_data.shape[1], img_data.shape[2])
     gmm = GaussianMixture(n_components = k, covariance_type = covariance_type)
