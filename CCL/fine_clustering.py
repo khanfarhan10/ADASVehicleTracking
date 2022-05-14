@@ -11,7 +11,8 @@ def run_CCL_clustering(image_path = None, img_data = None, convert_BGR2RGB = Tru
         img_data = np.uint8(img_data * 255)
     # props(img_data)
     
-    thresh_val, thresh_img = cv2.threshold(img_data, 0, 255, cv2.THRESH_OTSU) # cv2.THRESH_BINARY_INV |
+    thresh_val, thresh_img = cv2.threshold(img_data, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    print(f"thresh_val: {thresh_val}")
     
     # props(thresh_img)
     
