@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # fname = r"D:\work\ADASVehicleTracking\visualizations\GMM_image.png" # out of GMM
-fname = r"D:\work\ADASVehicleTracking\visualizations\GMM_cluster_2.png" # out of GMM
+fname = r"C:\Users\joyde\OneDrive\Desktop\TAMESH DA\aaaa\ADASVehicleTracking-main\visualizations\DSC_1643_GrayScale.png" # out of GMM
 # fname = 'D:\work\ADASVehicleTracking\Data\DSC_1643.jpg' # original
 def props(img,show_uniques=False):
     print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min(),"Data Type :",img.dtype)

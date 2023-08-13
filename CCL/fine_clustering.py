@@ -1,5 +1,10 @@
 import cv2
 import numpy as np
+import os, sys
+root_folder = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0,root_folder)
+print(root_folder)
+
 from utils import readImage, props
 
 # https://pyimagesearch.com/2021/02/22/opencv-connected-component-labeling-and-analysis/
